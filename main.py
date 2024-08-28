@@ -58,4 +58,40 @@ async def grant_file_permission(file_id: int, user_id: int, permission_level: st
 
     return {"message": "Permission granted successfully"}
 
+@app.post("/folder/{folder_id}/file")
+async def add_file_to_folder(folder_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)):
+    folder = db.query(Folder).filter(Folder.id == folder_id).first()
+    if folder:
+        folder.last_updated = datetime.datetime.now()
+        db.commit()
+
+    return {"success": True, "message": "File uploaded successfully and added to folder",}
+
+@app.delete("/folders/{folder_id}")
+async def delete_folder(folder_id: int, db: Session = Depends(get_db)):
+    folder = db.query(Folder).filter(Folder.id == folder_id).first()
+    if not folder:
+        raise HTTPException(status_code=404, detail="Folder not found")
+    db.delete(folder)
+    db.commit()
+
+    return {"message": "Folder deleted successfully"}
+
+@app.post("/folders/{folder_id}/permissions")
+async def grant_folder_permission(folder_id: int, user_id: int, permission_level: str, db: Session = Depends(get_db)):
+    permission = Permission(folder_id=folder_id, user_id=user_id)
+    if permission_level == "read":
+        permission.can_read = True
+    elif permission_level == "write":
+        permission.can_write = True
+    elif permission_level == "readwrite":
+        permission.can_read = True
+        permission.can_write = True
+    else:
+        raise HTTPException(status_code=400, detail="Invalid permission level")
+    db.add(permission)
+    db.commit()
+
+    return {"message": "Permission granted successfully"}
+
 
