@@ -1,38 +1,95 @@
 .App {
-  text-align: center;
+    background-color: #f1f1f1;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form_box {
+    width: 70%;
+    height: 440px;
+    display: flex;
+    box-shadow: 0 0 5px gray;
+    border: 1px solid #1c06b2;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.left_part {
+    background-color: #1c06b2;
+    flex-basis: 50%;
+    display: flex;
+    color: white;
+}
+.content_left {
+    margin: 100px auto 0;
+    text-align: center;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.content_left h3 {
+    font-size: 20px;
+    letter-spacing: 3px;
 }
 
-.App-link {
-  color: #61dafb;
+.content_left p {
+    margin: 40px 0;
+    font-size: 18px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content_left a {
+    display: inline-block;
+    border: 3px solid white;
+    border-radius: 99px;
+    padding: 6px;
+    text-decoration: none;
+    color: white;
+    width: 130px;
+    text-transform: uppercase;
+}
+
+.right_part {
+    flex-basis: 50%;
+    background-color: white;
+}
+
+.right_part h2 {
+    text-align: center;
+    margin: 15px 0;
+    color: #1c06b2;
+    font-weight: bold;
+}
+
+form {
+    margin: 30px auto;
+    width: 80%;
+    text-align: center;
+}
+
+form .form-group {
+    display: flex;
+    background-color: white;
+    margin: 15px 0;
+    border: 2px solid #1c06b2;
+    align-items: center;
+    padding-left: 3px;
+}
+
+.form-group input {
+    width: 100%;
+    margin-left: 5px;
+    padding: 15px;
+}
+
+.right_part button {
+    display: inline-block;
+    border-radius: 99px;
+    background-color: #1c06b2;
+    padding: 8px;
+    color: white;
+    width: 200px;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 5px;
 }
